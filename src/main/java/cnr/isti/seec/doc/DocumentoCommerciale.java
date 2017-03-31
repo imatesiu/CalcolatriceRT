@@ -1,4 +1,4 @@
-package isti.cnr.seec.doc;
+package cnr.isti.seec.doc;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

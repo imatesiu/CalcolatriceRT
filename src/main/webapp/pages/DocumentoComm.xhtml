@@ -18,7 +18,7 @@
     </ui:define>
 	
 	<ui:define name="content">
-    <h:form>
+    <h:form id="thisform">
 
  <p:growl id="msgs" showDetail="true" />
  
@@ -145,12 +145,9 @@
        <p:separator />
         <p:menuitem value="Reset" actionListener="#{insertMF.reset}" immediate="true" ajax="false" icon="ui-icon-close" />
     </p:splitButton> -->
-      <p:commandButton value="Next"  action="#{creaProve.goprove}"  style="width:200px;" update="msgs" icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
-                    <f:setPropertyActionListener target="#{creaProve.nomeDitta}" value="#{insertMF.nomeDitta}" />
-                    <f:setPropertyActionListener target="#{creaProve.modelloMF}" value="#{insertMF.nomeDispositivo}" />
-                    <f:setPropertyActionListener target="#{creaProve.numeroRapportoProva}" value="#{insertMF.numeroRapportoProva}" />
-                    <f:setPropertyActionListener target="#{creaProve.value}" value="#{insertMF.value}" /> 
-                    <f:setPropertyActionListener target="#{creaProve.esterno}" value="#{insertMF.esterno}" />  
+      <p:commandButton value="Next" update="@all" immediate="true" action="#{docComm.gonext}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+        <!--            <f:setPropertyActionListener target="#{creaProve.nomeDitta}" value="#{insertMF.nomeDitta}" />
+         -->
                     </p:commandButton>
     
     

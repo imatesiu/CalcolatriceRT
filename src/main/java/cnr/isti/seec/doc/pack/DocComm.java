@@ -1,6 +1,7 @@
-package isti.cnr.seec.doc.pack;
+package cnr.isti.seec.doc.pack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +12,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import isti.cnr.seec.doc.DocumentoCommerciale;
+import cnr.isti.seec.doc.DocumentoCommerciale;
 
 @ManagedBean
 @SessionScoped
@@ -178,6 +179,24 @@ public class DocComm {
 			
 		DocumentoCommerciale e = new DocumentoCommerciale(0, 0, iva, importo, riscosso, sconto, Reso, Annullo);
 		righe.add(e );
+	}
+	 
+	 public String gonext() {
+		 
+		 
+		 totalizza();
+		 init();
+		 righe = new ArrayList<>();
+		 importo = 0;
+		 sconto = 0;
+		 iva = 0;
+		 return "/pages/DocumentoComm.xhtml";
+	 }
+
+
+	private void totalizza() {
+		
+		
 	}
 
 }
