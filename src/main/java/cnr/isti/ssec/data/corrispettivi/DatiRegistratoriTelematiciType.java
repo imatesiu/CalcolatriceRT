@@ -240,4 +240,14 @@ public class DatiRegistratoriTelematiciType {
         this.totaleAmmontareAnnulli = value;
     }
 
+	@Override
+	public String toString() {
+		return "DatiRegistratoriTelematiciType [iva=" + iva + ", natura=" + natura + ", ventilazioneIVA="
+				+ ventilazioneIVA + ", ammontare=" + ammontare + ", rifNormativo=" + rifNormativo
+				+ ", totaleAmmontareResi=" + totaleAmmontareResi + ", totaleAmmontareAnnulli=" + totaleAmmontareAnnulli
+				+ "]";
+	}
+    
+    
+
 }
