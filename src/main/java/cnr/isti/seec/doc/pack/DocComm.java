@@ -83,6 +83,18 @@ public class DocComm {
 	public void setIva(float iva) {
 		this.iva = iva;
 	}
+	
+	
+
+
+	public Map<Float, DatiRegistratoriTelematiciType> getMapiva() {
+		return mapiva;
+	}
+
+
+	public void setMapiva(Map<Float, DatiRegistratoriTelematiciType> mapiva) {
+		this.mapiva = mapiva;
+	}
 
 
 	public float getImporto() {
