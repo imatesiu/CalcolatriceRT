@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html   xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>SSEC TEST HW PrimeFaces</title>
+		 
+ 
+   
+ 
+
+		<ui:debug />
+		<f:metadata>
+			<ui:insert name="metadata" />
+		</f:metadata>
+		
+		<h:head>
+		 <h:outputStylesheet name="main/css/showcase.css" />
+		 <ui:insert name="head" />
+			<!--  <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"  />-->
+</h:head>
+<h:body>
+			<p:layout fullPage="true" resizeTitle="resize" style="background-color:#FFFFFF;">
+
+				<p:layoutUnit position="north" size="100" id="north" >
+					<ui:include src="header.xhtml" />
+				</p:layoutUnit>
+		
+				<p:layoutUnit position="west" id="west" resizable="false" header="#{msg['menu.title']}" style="height:580px;overflow:hidden;" size="225">
+					<ui:include src="menu.xhtml" />
+				</p:layoutUnit>
+				
+				
+				
+				<p:layoutUnit	styleClass="layoutUnitCenter" 	position="center">
+					<h:form id="mainForm">
+						
+						<div class="ContentSideSections">
+                        <div class="Content100 overHidden TextShadow">
+                            <span class="fontSize30 TextShadow orange regularFont marginBottom20 dispBlock"><ui:insert name="title" /></span>
+                            <span class="defaultText dispTable"><ui:insert name="description" />
+                            </span>
+                        </div>
+                    </div>
+						
+						
+						<p:growl id="msgs" showDetail="true" />
+						<ui:insert name="content" />
+					</h:form>
+				</p:layoutUnit>
+				
+				
+			</p:layout>
+			
+		<!--	<p:messages autoUpdate="true" id="msgs" showDetail="true" showSummary="true" />
+		<p:dialog modal="true" widgetVar="statusDialog" showHeader="false" 
+				draggable="false" closable="false" resizable="false" 
+				visible="false" position="center" maximizable="false" minimizable="false" >
+				<p:graphicImage value="#{resource['images/ajax-loader.gif']}" />
+			</p:dialog>-->
+			
+		
+		</h:body>
+
+<!-- 	<h:body onload="statusDialog.hide();">
+	</h:body> -->
+
+</f:view>
+</html>		

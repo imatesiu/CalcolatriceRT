@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	
+	<ui:define name="title">
+       Documento Commerciale
+    </ui:define>
+
+    <ui:define name="description">
+       Inserisci i dati del Documento Commerciale
+    </ui:define>
+	
+	<ui:define name="content">
+    <h:form>
+
+ <p:growl id="msgs" showDetail="true" />
+ 
+    <h:panelGrid columns="2" cellpadding="5">
+      
+ <p:outputLabel value="Annullo?:" for="isannullo" />
+        <p:selectBooleanCheckbox  id="isannullo" value="#{docComm.annullo}">
+            <p:ajax update="msgs" listener="#{docComm.addMessage}" />
+        </p:selectBooleanCheckbox>
+        
+        <p:outputLabel value="Reso?:" for="isreso" />
+        <p:selectBooleanCheckbox  id="isreso" value="#{docComm.reso}">
+            <p:ajax update="msgs" listener="#{docComm.addMessageA}" />
+        </p:selectBooleanCheckbox>
+     
+     
+    
+    </h:panelGrid>
+    
+     <p:panelGrid class="ui-noborder"  cellpadding="5">
+     <f:facet name="header">  
+            <p:row>  
+                <p:column style="font-weight: bold;">IVA</p:column>  
+                <p:column style="font-weight: bold;">IMPORTO LORDO</p:column> 
+                 <p:column style="font-weight: bold;">SCONTO</p:column>  
+                <p:column style="font-weight: bold;">RISCOSSO</p:column>  
+                 
+            </p:row>  
+      </f:facet>
+      <p:row>  
+            <p:column> 
+      <p:inputNumber id="iva" value="#{docComm.iva}" symbol="%" 
+                                symbolPosition="s" emptyValue="sign">  
+                  <!--  <p:ajax update="output7" />   --> 
+                </p:inputNumber>
+      </p:column>
+        <p:column> 
+       <p:inputNumber id="importo" value="#{docComm.importo}" symbol=" EUR" symbolPosition="s" 
+                   emptyValue="sign"             minValue="00.00">  
+                   <p:ajax update="riscosso" />
+                    </p:inputNumber> 
+                      </p:column>
+                  <p:column>      
+           <p:inputNumber id="sconto" value="#{docComm.sconto}" symbol="%" 
+                                symbolPosition="s" emptyValue="sign">  
+                    <p:ajax  update="riscosso" resetValues="true"/>
+                </p:inputNumber>    
+                </p:column>        
+        <p:column> 
+         <p:inputNumber id="riscosso" value="#{docComm.riscosso}" symbol=" EUR" symbolPosition="s" 
+                                minValue="00.00">  
+                     
+                    </p:inputNumber> 
+        </p:column>
+         <p:column style="width:30px">
+                 <p:commandButton icon="fa fa-plus" update="msgs selectedTable " action="#{docComm.addriga}" >  <!-- listener="#{docComm.actionMF}"  oncomplete="PF('ProveDialog').show()"--> 
+                   
+                     <p:ajax  update="msgs selectedTable " resetValues="true"/>
+       					
+                    </p:commandButton>
+                </p:column>
+        </p:row>
+ 
+       
+     
+    </p:panelGrid>
+    
+    <br/><br/>
+    
+    
+     <p:dataTable id="selectedTable" var="doc" value="#{docComm.righe}" >
+                <p:column headerText="IVA">
+                    <h:outputText value="#{doc.iva}" />
+                </p:column>
+ 
+                <p:column headerText="IMPORTO">
+                    <h:outputText value="#{doc.importo}" />
+                </p:column>
+                
+                 <p:column headerText="SCONTO%">
+                    <h:outputText value="#{doc.sconto}" />
+                </p:column>
+                
+                 <p:column headerText="ISCONTO">
+                    <h:outputText value="#{doc.isconto}" />
+                </p:column>
+                
+  				<p:column headerText="RISCOSSO">
+                    <h:outputText value="#{doc.riscosso}" />
+                </p:column>
+                
+                <p:column headerText="IMPONIBILE">
+                    <h:outputText value="#{doc.imponibile}" />
+                </p:column>
+                
+                <p:column headerText="IMPOSTA">
+                    <h:outputText value="#{doc.imposta}" />
+                </p:column>
+               
+               <p:column  style="width:32px">
+                 <p:commandButton icon="fa fa-minus" immediate="true"  update="selectedTable" action="#{docComm.remriga}" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+                    <f:setPropertyActionListener value="#{doc}" target="#{docComm.selected}" />
+                    </p:commandButton>
+                    
+                      
+                        
+                    
+                </p:column>
+            <!--   <p:column style="width:32px">
+                 <p:commandButton icon="ui-icon-close" immediate="true">   oncomplete="PF('ProveDialog').show()" 
+                    
+                    </p:commandButton>
+                </p:column> --> 
+            </p:dataTable>
+    
+    
+    
+   <br/><br/>
+     <br/><br/>
+    
+    <p:growl id="messages" />
+ 
+<!--    <p:splitButton value="Save" actionListener="#{insertMF.save}" update="messages" icon="fa fa-save"  >
+       <p:separator />
+        <p:menuitem value="Reset" actionListener="#{insertMF.reset}" immediate="true" ajax="false" icon="ui-icon-close" />
+    </p:splitButton> -->
+      <p:commandButton value="Next"  action="#{creaProve.goprove}"  style="width:200px;" update="msgs" icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+                    <f:setPropertyActionListener target="#{creaProve.nomeDitta}" value="#{insertMF.nomeDitta}" />
+                    <f:setPropertyActionListener target="#{creaProve.modelloMF}" value="#{insertMF.nomeDispositivo}" />
+                    <f:setPropertyActionListener target="#{creaProve.numeroRapportoProva}" value="#{insertMF.numeroRapportoProva}" />
+                    <f:setPropertyActionListener target="#{creaProve.value}" value="#{insertMF.value}" /> 
+                    <f:setPropertyActionListener target="#{creaProve.esterno}" value="#{insertMF.esterno}" />  
+                    </p:commandButton>
+    
+    
+</h:form>
+    
+</ui:define>
+</ui:composition>

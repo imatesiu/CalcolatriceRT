@@ -1,0 +1,58 @@
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<h:form id="mainform">
+
+		<p:outputPanel id="menuPanel" layout="block">
+
+
+			<p:menu toggleable="true" ajax="false">
+				<p:submenu label="Crea">
+					<p:menuitem value="DocumentoCom" url="/pages/DocumentoComm.xhtml"
+						icon="fa fa-plus-square" />
+					<p:menuitem value="DocumentoGestionale"
+						url="/pages/DocumentoGestionale.xhtml" icon="fa fa-print" />
+					<p:menuitem value="InterventoTecnico"
+						url="/pages/InterventoTecnico.xhtml" icon="fa fa-print" />
+					<p:menuitem value="Fattura" url="/pages/Fattura.xhtml"
+						icon="fa fa-print" />
+					<p:menuitem value="Evento" url="/pages/Evento.xhtml"
+						icon="fa fa-print" />
+					<p:menuitem value="Segnalazione"
+						url="/pages/Segnalazione.xhtml" icon="fa fa-print" />
+					<p:menuitem value="PInattivita'"
+						url="/pages/PInattivita.xhtml" icon="fa fa-print" />
+
+				</p:submenu>
+				<p:submenu label="Modifica">
+					<p:menuitem value="Inizializza" url="/pages/selectProve.xhtml"
+						icon="fa fa-calculator">
+						<!--  <p:ajax  execute="@this"  listener="#{selectProve.reset}" update=":contentPanel" resetValues="true"/>
+           <p:resetInput target="contentPanel" />
+           <p:ajax update="contentPanel" resetValues="true" />-->
+					</p:menuitem>
+					<p:submenu label="Genera">
+						<p:menuitem value="DGFE"
+							url="/pages/searchMisuratoreFiscale.xhtml"
+							icon="fa fa-search-plus" />
+							<p:menuitem value="MemoriadiRiepilogo"
+							url="/pages/MemoriadiRiepilogo.xhtml"
+							icon="fa fa-search-plus" />
+					</p:submenu>
+				</p:submenu>
+				
+
+
+			</p:menu>
+		</p:outputPanel>
+
+	</h:form>
+</ui:composition>
+
+
