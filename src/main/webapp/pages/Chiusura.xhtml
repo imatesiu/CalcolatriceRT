@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/templates/template.xhtml">
+	<ui:define name="metadata">
+	</ui:define>
+	
+	  <ui:define name="title">
+        Chiusura - Documento Gestionale
+    </ui:define>
+
+    <ui:define name="description">
+        Documento di Riepilogo
+    </ui:define>
+	
+	<ui:define name="content">
+
+
+<h:body>
+
+    <h:form>
+
+ <p:growl id="msgs" showDetail="true" />
+ 
+    <h:panelGrid columns="2" cellpadding="5">
+       <p:outputLabel value="Ditta:" for="inputDitta" />
+       <p:inputText id="inputDitta" value="#{insertDitta.nomeDitta}" required="true" requiredMessage="Please enter name"/>
+       
+       <p:outputLabel value="Indirizzo:" for="inputindirizzo" />
+       <p:inputText id="inputindirizzo" value="#{insertDitta.indirizzo}" required="true" />
+       
+       <p:outputLabel value="P.IVA or C.F.:" for="inputPartitaIVA" />
+       <p:inputText id="inputPartitaIVA" value="#{insertDitta.pIVA}"  required="true"  />
+       
+     
+    
+    </h:panelGrid>
+    
+    
+    <br/>
+    <br/>
+   
+    <p:growl id="messages" />
+ 
+   
+      
+    
+    
+    
+</h:form>
+    
+</h:body>
+</ui:define>
+</ui:composition>

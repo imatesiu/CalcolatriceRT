@@ -73,4 +73,13 @@ public class ElencoCorrispettiviType {
         return this.riepilogo;
     }
 
+	public void setRiepilogo(DatiRegistratoriTelematiciType datiRT) {
+		if (riepilogo == null) {
+            riepilogo = new ArrayList<DatiRegistratoriTelematiciType>();
+        }
+		this.riepilogo.add(datiRT);
+	}
+    
+    
+
 }

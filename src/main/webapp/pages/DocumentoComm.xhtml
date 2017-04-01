@@ -152,9 +152,9 @@
          -->
                     </p:commandButton>
                     
-                      <p:commandButton value="Chiudi Cassa"  action="#{docComm.generatexml}"  style="width:200px;" update="msgs" icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
-                    <f:setPropertyActionListener target="#{TrasmissioneRT.nomeDitta}" value="#{docComm.mapiva}" />
- 
+                      <p:commandButton value="Chiudi Cassa" update="@all" action="#{docComm.generatexml}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+            <!--          <f:setPropertyActionListener target="#{TrasmissioneRT.nomeDitta}" value="#{docComm.mapiva}" />
+ -->
                     </p:commandButton>
     
     

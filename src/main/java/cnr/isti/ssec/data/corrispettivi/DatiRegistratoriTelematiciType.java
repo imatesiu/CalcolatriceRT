@@ -201,6 +201,9 @@ public class DatiRegistratoriTelematiciType {
      *     
      */
     public BigDecimal getTotaleAmmontareResi() {
+    	if(totaleAmmontareResi==null){
+    		totaleAmmontareResi = new BigDecimal(0);
+    	}
         return totaleAmmontareResi;
     }
 
@@ -225,6 +228,9 @@ public class DatiRegistratoriTelematiciType {
      *     
      */
     public BigDecimal getTotaleAmmontareAnnulli() {
+    	if(totaleAmmontareAnnulli==null){
+    		totaleAmmontareAnnulli = new BigDecimal(0);
+    	}
         return totaleAmmontareAnnulli;
     }
 
