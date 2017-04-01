@@ -10,11 +10,11 @@
 	</ui:define>
 	
 	<ui:define name="title">
-       Intervento Tecnico
+       Documento Commerciale
     </ui:define>
 
     <ui:define name="description">
-       Definisci Intervento Tecnico
+       Inserisci i dati del Documento Commerciale
     </ui:define>
 	
 	<ui:define name="content">
@@ -24,6 +24,12 @@
  
     <h:panelGrid columns="2" cellpadding="5">
     
+    
+     <p:outputLabel for="codice" value="Scegli codice Manutenzione: " />
+        <p:selectOneMenu id="codice" value="#{interventotecnico.intervento}" effect="fold" editable="true">
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{interventotecnico.interventi}" />
+        </p:selectOneMenu>
     
       
  <p:outputLabel value="Annullo?:" for="isannullo" />

@@ -29,6 +29,7 @@ import cnr.isti.ssec.data.corrispettivi.DatiCorrispettiviType;
 import cnr.isti.ssec.data.corrispettivi.DatiRegistratoriTelematiciType;
 import cnr.isti.ssec.data.corrispettivi.ElencoCorrispettiviType;
 import cnr.isti.ssec.data.corrispettivi.IVAType;
+import cnr.isti.ssec.data.corrispettivi.InterventoTecnicoType;
 import cnr.isti.ssec.data.corrispettivi.NaturaType;
 
 @ManagedBean
@@ -44,6 +45,8 @@ public class DocComm {
 	private float iva;
 	private float importo;
 	private float riscosso;
+	
+	private Integer codice;
 
 	private float sconto;
 
@@ -63,7 +66,7 @@ public class DocComm {
 
 		numero = 0;
 		numc = 0;
-
+		codice = 0;
 		riscosso = 0;
 		sconto = 0;
 		Reso = false;
@@ -78,6 +81,18 @@ public class DocComm {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	
+	
+
+
+	public Integer getCodice() {
+		return codice;
+	}
+
+
+	public void setCodice(Integer codice) {
+		this.codice = codice;
 	}
 
 
@@ -298,6 +313,13 @@ public class DocComm {
 		DCT.setDatiRT(elenco);
 		for ( DatiRegistratoriTelematiciType datiRT : mapiva.values()) {
 			elenco.setRiepilogo(datiRT);
+		}
+		
+		if(codice!=null){
+			if(codice>0){
+				List<InterventoTecnicoType> linter = new ArrayList<>();
+				
+			}
 		}
 		
 		JAXBContext jaxbCtx;
