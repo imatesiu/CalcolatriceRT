@@ -25,10 +25,12 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 import cnr.isti.seec.doc.DocumentoCommerciale;
+import cnr.isti.seec.util.util;
 import cnr.isti.ssec.data.corrispettivi.DatiCorrispettiviType;
 import cnr.isti.ssec.data.corrispettivi.DatiRegistratoriTelematiciType;
 import cnr.isti.ssec.data.corrispettivi.ElencoCorrispettiviType;
 import cnr.isti.ssec.data.corrispettivi.IVAType;
+import cnr.isti.ssec.data.corrispettivi.IdFiscaleType;
 import cnr.isti.ssec.data.corrispettivi.InterventoTecnicoType;
 import cnr.isti.ssec.data.corrispettivi.NaturaType;
 
@@ -242,7 +244,7 @@ public class DocComm {
 	public String gonext() {
 
 
-		totalizza();
+		util.totalizza(righe,mapiva,Reso,Annullo);
 		init();
 		righe = new ArrayList<>();
 		importo = 0;
@@ -251,8 +253,8 @@ public class DocComm {
 		return "/pages/DocumentoComm.xhtml";
 	}
 	public void generatexml(ActionEvent actionEvent) {
-		totalizza();
-		writeTo();
+		util.totalizza(righe,mapiva,Reso,Annullo);
+		stringaxml = util.writeTo(mapiva,codice);
 		init();
 		righe = new ArrayList<>();
 		importo = 0;
@@ -267,7 +269,7 @@ public class DocComm {
 	}
 
 
-	private void totalizza() {
+/*	private void totalizza() {
 		
 
 		for (DocumentoCommerciale documentoCommerciale : righe) {
@@ -318,7 +320,15 @@ public class DocComm {
 		if(codice!=null){
 			if(codice>0){
 				List<InterventoTecnicoType> linter = new ArrayList<>();
-				
+				InterventoTecnicoType inter = new InterventoTecnicoType();
+				linter.add(inter);
+				inter.setCFTecnico("CF");
+				inter.setCodice(codice.toString());
+				IdFiscaleType icdft = new IdFiscaleType();
+				icdft.setIdCodice("codice");
+				icdft.setIdPaese("paese");
+				inter.setIdIVALaboratorio(icdft);
+				inter.setNote("note");
 			}
 		}
 		
@@ -353,7 +363,7 @@ public class DocComm {
 			
 
 		}
-	}
+	}*/
 
 
 }

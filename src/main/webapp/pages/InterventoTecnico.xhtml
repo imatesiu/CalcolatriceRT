@@ -10,11 +10,11 @@
 	</ui:define>
 	
 	<ui:define name="title">
-       Documento Commerciale
+       Intervento Tecnico
     </ui:define>
 
     <ui:define name="description">
-       Inserisci i dati del Documento Commerciale
+     Se serve inserisci i dati del Documento Commerciale
     </ui:define>
 	
 	<ui:define name="content">
@@ -26,20 +26,20 @@
     
     
      <p:outputLabel for="codice" value="Scegli codice Manutenzione: " />
-        <p:selectOneMenu id="codice" value="#{interventotecnico.intervento}" effect="fold" editable="true">
+        <p:selectOneMenu required="true" id="codice" value="#{interventotecnico.intervento}" effect="fold" editable="true">
             <f:selectItem itemLabel="Select One" itemValue="" />
             <f:selectItems value="#{interventotecnico.interventi}" />
         </p:selectOneMenu>
     
       
  <p:outputLabel value="Annullo?:" for="isannullo" />
-        <p:selectBooleanCheckbox  id="isannullo" value="#{docComm.annullo}">
-            <p:ajax update="msgs" listener="#{docComm.addMessage}" />
+        <p:selectBooleanCheckbox  id="isannullo" value="#{interventotecnico.annullo}">
+            <p:ajax update="msgs" listener="#{interventotecnico.addMessage}" />
         </p:selectBooleanCheckbox>
         
         <p:outputLabel value="Reso?:" for="isreso" />
-        <p:selectBooleanCheckbox  id="isreso" value="#{docComm.reso}">
-            <p:ajax update="msgs" listener="#{docComm.addMessageA}" />
+        <p:selectBooleanCheckbox  id="isreso" value="#{interventotecnico.reso}">
+            <p:ajax update="msgs" listener="#{interventotecnico.addMessageA}" />
         </p:selectBooleanCheckbox>
      
      
@@ -58,31 +58,31 @@
       </f:facet>
       <p:row>  
             <p:column> 
-      <p:inputNumber id="iva" value="#{docComm.iva}" symbol="%" 
+      <p:inputNumber id="iva" value="#{interventotecnico.iva}" symbol="%" 
                                 symbolPosition="s" emptyValue="sign">  
                   <!--  <p:ajax update="output7" />   --> 
                 </p:inputNumber>
       </p:column>
         <p:column> 
-       <p:inputNumber id="importo" value="#{docComm.importo}" symbol=" EUR" symbolPosition="s" 
+       <p:inputNumber id="importo" value="#{interventotecnico.importo}" symbol=" EUR" symbolPosition="s" 
                    emptyValue="sign"             minValue="00.00">  
                    <p:ajax update="riscosso" />
                     </p:inputNumber> 
                       </p:column>
                   <p:column>      
-           <p:inputNumber id="sconto" value="#{docComm.sconto}" symbol="%" 
+           <p:inputNumber id="sconto" value="#{interventotecnico.sconto}" symbol="%" 
                                 symbolPosition="s" emptyValue="sign">  
                     <p:ajax  update="riscosso" resetValues="true"/>
                 </p:inputNumber>    
                 </p:column>        
         <p:column> 
-         <p:inputNumber id="riscosso" value="#{docComm.riscosso}" symbol=" EUR" symbolPosition="s" 
+         <p:inputNumber id="riscosso" value="#{interventotecnico.riscosso}" symbol=" EUR" symbolPosition="s" 
                                 minValue="00.00">  
                      
                     </p:inputNumber> 
         </p:column>
          <p:column style="width:30px">
-                 <p:commandButton icon="fa fa-plus" update="msgs selectedTable " action="#{docComm.addriga}" >  <!-- listener="#{docComm.actionMF}"  oncomplete="PF('ProveDialog').show()"--> 
+                 <p:commandButton icon="fa fa-plus" update="msgs selectedTable " action="#{interventotecnico.addriga}" >  <!-- listener="#{interventotecnico.actionMF}"  oncomplete="PF('ProveDialog').show()"--> 
                    
                      <p:ajax  update="msgs selectedTable " resetValues="true"/>
        					
@@ -97,7 +97,7 @@
     <br/><br/>
     
     
-     <p:dataTable id="selectedTable" var="doc" value="#{docComm.righe}" >
+     <p:dataTable id="selectedTable" var="doc" value="#{interventotecnico.righe}" >
                 <p:column headerText="IVA">
                     <h:outputText value="#{doc.iva}" />
                 </p:column>
@@ -127,8 +127,8 @@
                 </p:column>
                
                <p:column  style="width:32px">
-                 <p:commandButton icon="fa fa-minus" immediate="true"  update="selectedTable" action="#{docComm.remriga}" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
-                    <f:setPropertyActionListener value="#{doc}" target="#{docComm.selected}" />
+                 <p:commandButton icon="fa fa-minus" immediate="true"  update="selectedTable" action="#{interventotecnico.remriga}" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+                    <f:setPropertyActionListener value="#{doc}" target="#{interventotecnico.selected}" />
                     </p:commandButton>
                     
                       
@@ -153,14 +153,13 @@
        <p:separator />
         <p:menuitem value="Reset" actionListener="#{insertMF.reset}" immediate="true" ajax="false" icon="ui-icon-close" />
     </p:splitButton> -->
-      <p:commandButton value="Next" update="@all" immediate="true" action="#{docComm.gonext}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
-        <!--            <f:setPropertyActionListener target="#{creaProve.nomeDitta}" value="#{insertMF.nomeDitta}" />
-         -->
+     <!-- <p:commandButton value="Next" update="@all" immediate="true" action="#{interventotecnico.gonext}"  style="width:200px;"  icon="fa fa-save" > 
+                    <f:setPropertyActionListener target="#{creaProve.nomeDitta}" value="#{insertMF.nomeDitta}" />
+        
                     </p:commandButton>
-                    
-                      <p:commandButton value="Chiudi Cassa" update="@all" actionListener="#{docComm.generatexml}" action="#{docComm.gotochiusura}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
-                     
-                    <f:setPropertyActionListener target="#{chiusura.xmlString}" value="#{docComm.stringaxml}" />
+         -->            
+                      <p:commandButton value="Genera Dati Corrispettivi" update="@all" actionListener="#{interventotecnico.generatexml}" action="#{interventotecnico.gotochiusura}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+                    <f:setPropertyActionListener target="#{chiusura.xmlString}" value="#{interventotecnico.stringaxml}" />
   <!-- -->
                     </p:commandButton>
     

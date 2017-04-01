@@ -152,7 +152,7 @@
          -->
                     </p:commandButton>
                     
-                      <p:commandButton value="Chiudi Cassa" update="@all" actionListener="#{docComm.generatexml}" action="#{docComm.gotochiusura}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
+                      <p:commandButton value="Genera Dati Corrispettivi" update="@all" actionListener="#{docComm.generatexml}" action="#{docComm.gotochiusura}"  style="width:200px;"  icon="fa fa-save" >  <!--  oncomplete="PF('ProveDialog').show()"--> 
                      
                     <f:setPropertyActionListener target="#{chiusura.xmlString}" value="#{docComm.stringaxml}" />
   <!-- -->

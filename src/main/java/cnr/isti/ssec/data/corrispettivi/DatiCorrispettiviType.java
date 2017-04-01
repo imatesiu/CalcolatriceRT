@@ -78,6 +78,9 @@ public class DatiCorrispettiviType {
     protected List<SegnalazioneType> segnalazione;
     @XmlAttribute(name = "versione", required = true)
     protected FormatoTrasmissioneType versione;
+    
+    @XmlAttribute(name = "simulazione", required = false)
+    protected String simulazione;
 
     /**
      * Gets the value of the trasmissione property.
@@ -280,5 +283,15 @@ public class DatiCorrispettiviType {
     public void setVersione(FormatoTrasmissioneType value) {
         this.versione = value;
     }
+
+	public String getSimulazione() {
+		return simulazione;
+	}
+
+	public void setSimulazione(String simulazione) {
+		this.simulazione = simulazione;
+	}
+    
+    
 
 }
