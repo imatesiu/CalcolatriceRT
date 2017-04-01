@@ -50,8 +50,12 @@ public class DocComm {
 	private boolean Reso;
 	private boolean Annullo;
 
+
 	Map<Float,DatiRegistratoriTelematiciType>	mapiva = new HashMap<>();
 	private DocumentoCommerciale selected;
+
+
+	private String stringaxml;
 
 
 	@PostConstruct
@@ -97,6 +101,16 @@ public class DocComm {
 	}
 	
 	
+
+
+	public String getStringaxml() {
+		return stringaxml;
+	}
+
+
+	public void setStringaxml(String stringaxml) {
+		this.stringaxml = stringaxml;
+	}
 
 
 	public Map<Float, DatiRegistratoriTelematiciType> getMapiva() {
@@ -221,8 +235,7 @@ public class DocComm {
 		iva = 0;
 		return "/pages/DocumentoComm.xhtml";
 	}
-	
-	public  String generatexml(){
+	public void generatexml(ActionEvent actionEvent) {
 		totalizza();
 		writeTo();
 		init();
@@ -230,6 +243,11 @@ public class DocComm {
 		importo = 0;
 		sconto = 0;
 		iva = 0;
+		mapiva = new HashMap<>();
+	}
+
+	public  String gotochiusura(){
+		
 		return "/pages/Chiusura.xhtml";
 	}
 
@@ -238,7 +256,8 @@ public class DocComm {
 		
 
 		for (DocumentoCommerciale documentoCommerciale : righe) {
-			if(mapiva.containsKey(documentoCommerciale.getIva())){
+			float iva = documentoCommerciale.getIva();
+			if(mapiva.containsKey(iva)){
 				DatiRegistratoriTelematiciType Rt = mapiva.get(documentoCommerciale.getIva());
 				if(!Reso & !Annullo){
 				if(Rt.getIVA()!=null)
@@ -251,8 +270,7 @@ public class DocComm {
 				if(Reso)
 					Rt.setTotaleAmmontareResi(Rt.getTotaleAmmontareResi().add(new BigDecimal(documentoCommerciale.getRiscosso())));
 			}else{
-				DatiRegistratoriTelematiciType Rt = new DatiRegistratoriTelematiciType();
-				
+				DatiRegistratoriTelematiciType Rt = new DatiRegistratoriTelematiciType();			
 				if(iva>0){
 					IVAType ivat = new IVAType();
 					ivat.setAliquotaIVA(new BigDecimal(iva));
@@ -305,7 +323,7 @@ public class DocComm {
 			marshaller.marshal( DCT, os );
 			StringWriter sw = new StringWriter();
 			marshaller.marshal( DCT, sw);
-			 sw.toString();
+			stringaxml = sw.toString();
 			
 		} catch (JAXBException | FileNotFoundException  e) {
 			// TODO Auto-generated catch block
