@@ -47,10 +47,10 @@ public class util {
 				}
 				if (Annullo)
 					Rt.setTotaleAmmontareAnnulli(
-							Rt.getTotaleAmmontareAnnulli().add(new BigDecimal(documentoCommerciale.getRiscosso())));
+							Rt.getTotaleAmmontareAnnulli().add(new BigDecimal(documentoCommerciale.getImponibile())));
 				if (Reso)
 					Rt.setTotaleAmmontareResi(
-							Rt.getTotaleAmmontareResi().add(new BigDecimal(documentoCommerciale.getRiscosso())));
+							Rt.getTotaleAmmontareResi().add(new BigDecimal(documentoCommerciale.getImponibile())));
 			} else {
 				DatiRegistratoriTelematiciType Rt = new DatiRegistratoriTelematiciType();
 				if (iva > 0) {
@@ -65,9 +65,9 @@ public class util {
 				if (!Reso & !Annullo)
 					Rt.setAmmontare(new BigDecimal(documentoCommerciale.getImponibile()));
 				if (Annullo)
-					Rt.setTotaleAmmontareAnnulli(new BigDecimal(documentoCommerciale.getRiscosso()));
+					Rt.setTotaleAmmontareAnnulli(new BigDecimal(documentoCommerciale.getImponibile()));
 				if (Reso)
-					Rt.setTotaleAmmontareResi(new BigDecimal(documentoCommerciale.getRiscosso()));
+					Rt.setTotaleAmmontareResi(new BigDecimal(documentoCommerciale.getImponibile()));
 				mapiva.put(iva, Rt);
 			}
 		}
