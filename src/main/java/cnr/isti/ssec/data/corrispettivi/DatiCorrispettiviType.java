@@ -48,7 +48,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  * 
  */
-@XmlRootElement(name = "DatiCorrispettivi", namespace = "http://ivaservizi.agenziaentrate.gov.it/docs/xsd/corrispettivi/v1.0")
+@XmlRootElement(name = "DatiCorrispettivi", namespace = "http://ivaservizi.agenziaentrate.gov.it/docs/xsd/corrispettivi/dati/v1.0")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DatiCorrispettiviType", propOrder = {
     "trasmissione",
