@@ -44,6 +44,10 @@ public class util {
 								Rt.getIVA().getImposta().add(new BigDecimal(documentoCommerciale.getImposta())));
 					// if(!Reso & !Annullo)
 					Rt.setAmmontare(Rt.getAmmontare().add(new BigDecimal(documentoCommerciale.getImponibile())));
+				}else{
+					if (Rt.getIVA() != null)
+						Rt.getIVA().setImposta(
+								Rt.getIVA().getImposta().subtract(new BigDecimal(documentoCommerciale.getImposta())));
 				}
 				if (Annullo)
 					Rt.setTotaleAmmontareAnnulli(
@@ -56,8 +60,13 @@ public class util {
 				if (iva > 0) {
 					IVAType ivat = new IVAType();
 					ivat.setAliquotaIVA(new BigDecimal(iva));
-					if (!Reso & !Annullo)
+					if (!Reso & !Annullo){
 						ivat.setImposta(new BigDecimal(documentoCommerciale.getImposta()));
+					}else{
+						//ivat.setImposta();
+						ivat.setImposta(
+								new BigDecimal(0).subtract(new BigDecimal(documentoCommerciale.getImposta())));
+					}
 					Rt.setIVA(ivat);
 				} else {
 					Rt.setNatura(NaturaType.N_2);
